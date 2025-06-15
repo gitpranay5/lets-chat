@@ -1,0 +1,15 @@
+{
+  "development": {
+    "username": "pranay",
+    "password": "Chinnu@0510",
+    "database": "lets-chat-database",
+    "host": "lets-chat-databaseserver.database.windows.net",
+    "dialect": "mssql",
+    "dialectOptions": {
+      "options": {
+        "encrypt": true
+      }
+    }
+  
+  }
+}

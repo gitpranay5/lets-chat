@@ -9,3 +9,7 @@ server/config/serviceAccountKey.json
 
 ## Env file
 .env
+
+# Docker files
+*.tar
+
