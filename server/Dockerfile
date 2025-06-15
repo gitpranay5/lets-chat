@@ -8,9 +8,8 @@ RUN npm install firebase
 COPY . .
 RUN npm prune --production
 
-# Copy environment file from frontend directory  
-COPY .env /app/.env
-# COPY .env.local /app/.env.local 
+# Copy environment file from server directory  
+COPY server/.env /app/.env
 
 # Stage 2: Runtime Stage
 FROM node:18-alpine

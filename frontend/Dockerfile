@@ -8,7 +8,7 @@ ARG REACT_APP_API_URL
 ENV REACT_APP_API_URL=$REACT_APP_API_URL
 
 # Copy environment file
-COPY .env /app/.env
+COPY frontend/.env /app/.env
 
 # Copy package.json first for caching
 COPY package*.json ./
