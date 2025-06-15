@@ -25,7 +25,7 @@ jobs:
           - name: Build project
             run: |
               cd server
-              npm run build
+              docker build --no-cache
 
     docker:
         runs-on: ubuntu-latest
