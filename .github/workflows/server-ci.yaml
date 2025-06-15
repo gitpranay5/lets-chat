@@ -25,7 +25,7 @@ jobs:
           - name: Build project
             run: |
               cd server
-              docker build --no-cache server/
+              docker build --no-cache -t lets-chat-server:v10.0 . 
 
     docker:
         runs-on: ubuntu-latest
