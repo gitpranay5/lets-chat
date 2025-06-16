@@ -3,13 +3,33 @@ FROM node:18-alpine AS builder
 
 WORKDIR /app
 COPY package*.json ./
+
+# Accept the API URL from build args
+ARG FIREBASE_API_KEY
+ARG FIREBASE_APP_ID
+ARG FIREBASE_AUTH_DOMAIN
+ARG FIREBASE_MESSAGING_SENDER_ID
+ARG FIREBASE_PROJECT_ID
+ARG FIREBASE_STORAGE_BUCKET
+ARG GENERATE_SOURCEMAP
+ARG AZURE_SQL_CONNECTION_STRING
+
+ENV FIREBASE_API_KEY=$FIREBASE_API_KEY
+ENV FIREBASE_APP_ID=$FIREBASE_APP_ID
+ENV FIREBASE_AUTH_DOMAIN=$FIREBASE_AUTH_DOMAIN
+ENV FIREBASE_MESSAGING_SENDER_ID=$FIREBASE_MESSAGING_SENDER_ID
+ENV FIREBASE_PROJECT_ID=$FIREBASE_PROJECT_ID
+ENV FIREBASE_STORAGE_BUCKET=$FIREBASE_STORAGE_BUCKET
+ENV GENERATE_SOURCEMAP=$GENERATE_SOURCEMAP
+ENV AZURE_SQL_CONNECTION_STRING=$AZURE_SQL_CONNECTION_STRING
+
 RUN npm install
 RUN npm install firebase
 COPY . .
 RUN npm prune --production
 
 # Copy environment file from server directory  
-COPY .env /app/.env
+#COPY .env /app/.env
 
 # Stage 2: Runtime Stage
 FROM node:18-alpine
@@ -18,7 +38,7 @@ WORKDIR /app
 COPY --from=builder /app ./
 
 # Ensure Node.js loads environment variables  
-RUN npm install dotenv && echo "import dotenv from 'dotenv'; dotenv.config({ path: '/app/.env' });" >> index.js
+RUN npm install dotenv
 
 
 EXPOSE 8080
