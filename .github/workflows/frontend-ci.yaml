@@ -6,31 +6,6 @@ on:
       - main
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
-        steps:
-          - name: Checkout code
-            uses: actions/checkout@v4
-
-          - name: Set up Node.js
-            uses: actions/setup-node@v3
-            with:
-              node-version: '18'
-
-          - name: Build project
-            run: |
-               cd frontend
-               docker build --no-cache -t lets-chat-frontend:v10.0 \
-               --build-arg REACT_APP_FIREBASE_API_KEY=${{ secrets.FIREBASE_API_KEY }} \
-               --build-arg REACT_APP_FIREBASE_APP_ID=${{ secrets.FIREBASE_APP_ID }} \
-               --build-arg REACT_APP_FIREBASE_AUTH_DOMAIN=${{ secrets.FIREBASE_AUTH_DOMAIN }} \
-               --build-arg REACT_APP_FIREBASE_MESSAGING_SENDER_ID=${{ secrets.FIREBASE_MESSAGING_SENDER_ID }} \
-               --build-arg REACT_APP_FIREBASE_PROJECT_ID=${{ secrets.FIREBASE_PROJECT_ID }} \
-               --build-arg REACT_APP_FIREBASE_STORAGE_BUCKET=${{ secrets.FIREBASE_STORAGE_BUCKET }} \
-               --build-arg GENERATE_SOURCEMAP=false \
-               --build-arg AZURE_SQL_CONNECTION_STRING=${{ secrets.AZURE_SQL_CONNECTION_STRING }} \
-               .
-  
     docker:
         runs-on: ubuntu-latest
 
@@ -55,7 +30,7 @@ jobs:
             context: frontend
             file: frontend/Dockerfile
             push: true
-            tags: ${{ secrets.DOCKER_USERNAME }}/frontend:${{ github.run_id }}
+            tags: ${{ secrets.DOCKER_USERNAME }}/lets-chat-frontend:${{ github.run_id }}
             build-args: |
               REACT_APP_FIREBASE_API_KEY=${{ secrets.FIREBASE_API_KEY }}
               REACT_APP_FIREBASE_APP_ID=${{ secrets.FIREBASE_APP_ID }}
@@ -88,5 +63,5 @@ jobs:
             git config --global user.name "Pranay Jujjuri"
             git add K8s/frontend-deployment.yaml
             git commit -m "[CI]: Update frontend image tag"
-            git push origin HEAD:${{ github.head_ref }}
+            git push origin HEAD:${{ github.head_ref }} -f
         
