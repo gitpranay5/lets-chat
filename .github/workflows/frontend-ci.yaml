@@ -25,8 +25,17 @@ jobs:
           - name: Build project
             run: |
                cd frontend
-               docker build --no-cache -t lets-chat-frontend:v10.0 .
-
+               docker build --no-cache -t lets-chat-frontend:v10.0 \
+               --build-arg REACT_APP_FIREBASE_API_KEY=${{ secrets.FIREBASE_API_KEY }} \
+               --build-arg REACT_APP_FIREBASE_APP_ID=${{ secrets.FIREBASE_APP_ID }} \
+               --build-arg REACT_APP_FIREBASE_AUTH_DOMAIN=${{ secrets.FIREBASE_AUTH_DOMAIN }} \
+               --build-arg REACT_APP_FIREBASE_MESSAGING_SENDER_ID=${{ secrets.FIREBASE_MESSAGING_SENDER_ID }} \
+               --build-arg REACT_APP_FIREBASE_PROJECT_ID=${{ secrets.FIREBASE_PROJECT_ID }} \
+               --build-arg REACT_APP_FIREBASE_STORAGE_BUCKET=${{ secrets.FIREBASE_STORAGE_BUCKET }} \
+               --build-arg GENERATE_SOURCEMAP=false \
+               --build-arg AZURE_SQL_CONNECTION_STRING=${{ secrets.AZURE_SQL_CONNECTION_STRING }} \
+               .
+  
     docker:
         runs-on: ubuntu-latest
 
