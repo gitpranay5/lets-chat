@@ -88,5 +88,5 @@ jobs:
             git config --global user.name "Pranay Jujjuri"
             git add K8s/frontend-deployment.yaml
             git commit -m "[CI]: Update frontend image tag"
-            git push origin HEAD:main
+            git push origin HEAD:${{ github.head_ref }}
         
