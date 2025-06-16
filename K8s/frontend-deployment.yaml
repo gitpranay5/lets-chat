@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: letschatcr.azurecr.io/lets-chat-frontend:v9.5
+        image: pranaydockerusr/lets-chat-frontend:15674517832
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
