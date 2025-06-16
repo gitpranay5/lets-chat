@@ -17,11 +17,6 @@ jobs:
             with:
               node-version: '18'
 
-          - name: Install dependencies
-            run: |
-               cd frontend
-               npm install
-
           - name: Build project
             run: |
                cd frontend
@@ -60,7 +55,18 @@ jobs:
             context: frontend
             file: frontend/Dockerfile
             push: true
-            tags: ${{ secrets.DOCKER_USERNAME }}/frontend:${{github.run_id}}
+            tags: ${{ secrets.DOCKER_USERNAME }}/frontend:${{ github.run_id }}
+            build-args: |
+              REACT_APP_FIREBASE_API_KEY=${{ secrets.FIREBASE_API_KEY }}
+              REACT_APP_FIREBASE_APP_ID=${{ secrets.FIREBASE_APP_ID }}
+              REACT_APP_FIREBASE_AUTH_DOMAIN=${{ secrets.FIREBASE_AUTH_DOMAIN }}
+              REACT_APP_FIREBASE_MESSAGING_SENDER_ID=${{ secrets.FIREBASE_MESSAGING_SENDER_ID }}
+              REACT_APP_FIREBASE_PROJECT_ID=${{ secrets.FIREBASE_PROJECT_ID }}
+              REACT_APP_FIREBASE_STORAGE_BUCKET=${{ secrets.FIREBASE_STORAGE_BUCKET }}
+              GENERATE_SOURCEMAP=false
+              AZURE_SQL_CONNECTION_STRING=${{ secrets.AZURE_SQL_CONNECTION_STRING }}
+
+
     updatek8s:
         runs-on: ubuntu-latest
 
@@ -70,7 +76,7 @@ jobs:
         - name: checkout code
           uses: actions/checkout@v4
           with:
-            token: ${{ secrets.GITHUB_TOKEN }}
+            token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
         - name: Update tag in kubernetes deployment manifest
           run: | 
