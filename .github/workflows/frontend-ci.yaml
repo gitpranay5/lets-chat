@@ -4,6 +4,9 @@ on:
   pull_request:
     branches:
       - main
+  push_request:
+    branches:
+      - fix-secrets
 
 jobs:
     docker:
