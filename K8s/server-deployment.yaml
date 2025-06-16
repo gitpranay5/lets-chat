@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lets-chat-server
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: lets-chat-server
+  template:
+    metadata:
+      labels:
+        app: lets-chat-server
+    spec:
+      containers:
+      - name: server
+        image: pranaydockerusr/lets-chat-server:15674317802
+        imagePullPolicy: IfNotPresent
+        command: ["/bin/sh", "-c", "sleep infinity"]  
+        env:
+        - name: PORT
+          value: "8080"
+        volumeMounts:  # ✅ Mount ConfigMap containing .env
+        - name: env-config-volume
+          mountPath: /app/.env
+          subPath: .env
+      volumes:
+      - name: env-config-volume
+        configMap:
+          name: env-config
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: lets-chat-server-service
+spec:
+  selector:
+    app: lets-chat-server
+  ports:
+  - port: 8080
+    targetPort: 8080
+  type: ClusterIP
