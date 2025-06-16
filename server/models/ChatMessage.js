@@ -1,14 +1,12 @@
-import mongoose from "mongoose";
+import { DataTypes } from "sequelize";
+import sequelize from "../config/database.js";
 
-const ChatMessageSchema = mongoose.Schema(
-  {
-    chatRoomId: String,
-    sender: String,
-    message: String,
-  },
-  { timestamps: true }
-);
-
-const ChatMessage = mongoose.model("ChatMessage", ChatMessageSchema);
+const ChatMessage = sequelize.define("ChatMessage", {
+  id: { type: DataTypes.UUID, defaultValue: DataTypes.UUIDV4, primaryKey: true },
+  senderId: { type: DataTypes.STRING, allowNull: false },
+  receiverId: { type: DataTypes.STRING, allowNull: false },
+  message: { type: DataTypes.TEXT, allowNull: false },
+  createdAt: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
+});
 
 export default ChatMessage;

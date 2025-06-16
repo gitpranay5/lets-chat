@@ -42,4 +42,6 @@ function App() {
   );
 }
 
+console.log("API Key from App.js:", process.env.REACT_APP_FIREBASE_API_KEY);
+
 export default App;
