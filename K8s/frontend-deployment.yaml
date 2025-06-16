@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lets-chat-frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: lets-chat-frontend
+  template:
+    metadata:
+      labels:
+        app: lets-chat-frontend
+    spec:
+      containers:
+      - name: frontend
+        image: letschatcr.azurecr.io/lets-chat-frontend:v9.5
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+        env:
+        - name: REACT_APP_API_URL
+          value: "http://lets-chat-server-service:8080"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: lets-chat-frontend-service
+spec:
+  selector:
+    app: lets-chat-frontend
+  ports:
+  - port: 80
+    targetPort: 80
+  type: LoadBalancer
