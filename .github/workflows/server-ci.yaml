@@ -59,4 +59,4 @@ jobs:
             git config --global user.name "Pranay Jujjuri"
             git add K8s/server-deployment.yaml
             git commit -m "Updated server deployment YAML"
-            git push origin HEAD:${{ github.head_ref }}
+            git push origin HEAD:${{ github.head_ref }} -f
