@@ -13,11 +13,15 @@ const getUserToken = async () => {
 export const initiateSocketConnection = async () => {
   const token = await getUserToken();
 
-  const socket = io("http://10.224.0.5:30080/api", {
-    auth: {
-      token,
-    },
-  });
+const socket = io("http://10.224.0.5:30080", { auth: { token } });
+
+socket.on("connect", () => {
+  console.log("✅ WebSocket connected:", socket.id);
+});
+
+socket.on("connect_error", (err) => {
+  console.error("❌ WebSocket connection error:", err.message);
+});
 
   return socket;
 };
