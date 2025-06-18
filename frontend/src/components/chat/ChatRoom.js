@@ -15,7 +15,10 @@ export default function ChatRoom({ currentChat, currentUser, socket }) {
   useEffect(() => {
     const fetchData = async () => {
       const res = await getMessagesOfChatRoom(currentChat._id);
-      setMessages(res);
+      console.log("🔍 API Response (Chat Messages):", res.data); // ✅ Debugging log
+      const messages = res.data || [];  // ✅ Prevents undefined errors
+      const mappedMessages = messages.map(msg => msg.text);
+      setMessages(mappedMessages);
     };
 
     fetchData();

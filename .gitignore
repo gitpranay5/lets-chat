@@ -5,7 +5,6 @@ node_modules
 package-lock.json
 
 ## Firebase
-server/config/serviceAccountKey.json
 
 ## Env file
 frontend/.env
