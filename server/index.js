@@ -4,7 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 // ✅ Load `.env` file
-dotenv.config({ path: "/app/.env" });
+//dotenv.config({ path: "/app/.env" });
 
 /* ✅ Check if .env.local exists before loading
 //const envPath = "/app/.env.local";
