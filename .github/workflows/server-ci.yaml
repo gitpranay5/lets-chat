@@ -3,6 +3,8 @@ on:
   pull_request:
     branches:
       - main
+  paths:
+      - 'server/**'
 
 jobs:
     docker:
@@ -58,6 +60,9 @@ jobs:
             git config --global user.email "pranayjujjuri@gmail.com"
             git config --global user.name "Pranay Jujjuri"
             git add K8s/server-deployment.yaml
-            git commit -m "[CI]: Update frontend image tag"
-            git push origin HEAD:${{ github.head_ref }} -f
+            
+            if ! git diff --staged --quiet; then
+              git commit -m "Update server image tag to ${{ github.run_id }} (from PR #${{ github.event.number }})"
+              git push origin main
+            fi
         
