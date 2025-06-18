@@ -43,7 +43,7 @@ const createHeader = async () => {
 
 export const getAllUsers = async () => {
   const header = await createHeader();
-  
+
   try {
     const res = await axios.get(`${baseURL}/user`, header);
     console.log("🔍 API Response (Users):", res.data);  // ✅ Debugging log
@@ -55,7 +55,6 @@ export const getAllUsers = async () => {
 
 export const getUser = async (userId) => {
   const header = await createHeader();
-
   try {
     const res = await axios.get(`${baseURL}/user/${userId}`, header);
     console.log("🔍 API Response (User):", res.data);  // ✅ Debugging log
@@ -67,7 +66,6 @@ export const getUser = async (userId) => {
 
 export const getUsers = async (users) => {
   const header = await createHeader();
-
   try {
     console.log("🔍 Request Data (getUsers):", users);  // ✅ Debugging log
     const res = await axios.get(`${baseURL}/user/users`, users, header);
@@ -80,7 +78,6 @@ export const getUsers = async (users) => {
 
 export const getChatRooms = async (userId) => {
   const header = await createHeader();
-
   try {
     const res = await axios.get(`${baseURL}/room/${userId}`, header);
     console.log("🔍 API Response (ChatRooms):", res.data);  // ✅ Debugging log
@@ -92,7 +89,6 @@ export const getChatRooms = async (userId) => {
 
 export const getChatRoomOfUsers = async (firstUserId, secondUserId) => {
   const header = await createHeader();
-
   try {
     const res = await axios.get(
       `${baseURL}/room/${firstUserId}/${secondUserId}`,
@@ -107,7 +103,6 @@ export const getChatRoomOfUsers = async (firstUserId, secondUserId) => {
 
 export const createChatRoom = async (members) => {
   const header = await createHeader();
-
   try {
     console.log("🔍 Request Data (createChatRoom):", members);  // ✅ Debugging log
     const res = await axios.post(`${baseURL}/room`, members, header);
@@ -120,7 +115,6 @@ export const createChatRoom = async (members) => {
 
 export const getMessagesOfChatRoom = async (chatRoomId) => {
   const header = await createHeader();
-
   try {
     const res = await axios.get(`${baseURL}/message/${chatRoomId}`, header);
     console.log("🔍 API Response (MessagesOfChatRoom):", res.data);  // ✅ Debugging log for messages
