@@ -59,9 +59,7 @@ jobs:
             git config --global user.email "pranayjujjuri@gmail.com"
             git config --global user.name "Pranay Jujjuri"
             git add K8s/frontend-deployment.yaml
-            
-            if ! git diff --staged --quiet; then
-              git commit -m "Update frontend image tag to ${{ github.run_id }} (from PR #${{ github.event.number }})"
-              git push origin main
-            fi
+            git commit -m "Updated frontend deployment YAML"
+            git push origin HEAD
+
         
