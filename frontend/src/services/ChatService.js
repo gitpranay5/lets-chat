@@ -43,6 +43,7 @@ const createHeader = async () => {
 
 export const getAllUsers = async () => {
   const header = await createHeader();
+
   try {
     const res = await axios.get(`${baseURL}/user`, header);
     console.log("🔍 API Response (Users):", res.data);  // ✅ Debugging log
@@ -116,7 +117,7 @@ export const getMessagesOfChatRoom = async (chatRoomId) => {
   const header = await createHeader();
   try {
     const res = await axios.get(`${baseURL}/message/${chatRoomId}`, header);
-    console.log("🔍 API Response (MessagesOfChatRoom):", res.data);  // ✅ Debugging log
+    console.log("🔍 API Response (MessagesOfChatRoom):", res.data);  // ✅ Debugging log for messages
     return res.data || [];  // ✅ Ensure fallback to empty array
   } catch (e) {
     console.error("❌ API Error (getMessagesOfChatRoom):", e);
