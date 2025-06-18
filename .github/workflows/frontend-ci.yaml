@@ -60,6 +60,6 @@ jobs:
             git config --global user.name "Pranay Jujjuri"
             git add K8s/frontend-deployment.yaml
             git commit -m "Updated frontend deployment YAML"
-            git push origin HEAD
+            git push origin HEAD:${{ github.head_ref }}
 
         
