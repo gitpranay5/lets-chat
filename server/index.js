@@ -64,7 +64,8 @@ app.use("/api/user", userRoutes);
 const server = createServer(app);
 const io = new Server(server, { 
   cors: { 
-    origin: process.env.FRONTEND_URL || "http://localhost:3000", 
+    origin: "http://172.171.143.98",
+    methods: ["GET", "POST"], 
     credentials: true,
   }
 });
@@ -103,5 +104,6 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(process.env.PORT, () => console.log(`🚀 Server running on port ${process.env.PORT}`));
+const PORT = 8080;
+server.listen(PORT, "0.0.0.0", () => console.log(`🚀 Server running on port ${PORT}`));
 
