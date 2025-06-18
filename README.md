@@ -13,7 +13,7 @@ GIFs are attached at the end.
 - React and TailwindCSS for the frontend
 - Firebase for authentication
 - Node/Express for creating API endpoints
-- MongoDB for storing chat room members and their messages
+- Azure SQL for storing chat room members and their messages
 - Socket.io for making the app real-time
 
 ## Basic Features
@@ -47,7 +47,7 @@ To run this project locally, follow these steps:
    - In the `frontend` directory, create a new file named `.env` based on the `.env.example` file.
    - Update the values of the environment variables in the `.env` file with your Firebase configuration details.
    - In the root directory, create a new file named `.env` based on the `.env.example` file.
-   - Update the values of the environment variables in the `.env` file according to your preferences. For example, set the `PORT` variable to specify the desired port for the server and set `MONGO_URI` to your MongoDB connection URI.
+   - Update the values of the environment variables in the `.env` file according to your preferences. For example, set the `PORT` variable to specify the desired port for the server and set `AZURE_SQL_CONNECTION_STRING` to your Azure SQL connection URI.
 5. Run the server:
    - Navigate to the `server` directory and run `npm run start`.
 6. Run the client:
