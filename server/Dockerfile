@@ -25,6 +25,7 @@ ENV AZURE_SQL_CONNECTION_STRING=$AZURE_SQL_CONNECTION_STRING
 
 RUN npm install
 RUN npm install firebase
+COPY config/serviceAccountKey.json /app/config/serviceAccountKey.json
 COPY . .
 RUN npm prune --production
 
@@ -42,4 +43,4 @@ RUN npm install dotenv
 
 
 EXPOSE 8080
-CMD ["node", "index.js"]
+ENTRYPOINT ["node", "index.js"]
