@@ -2,7 +2,7 @@ import axios from "axios";
 import auth from "../config/firebase";
 import { io } from "socket.io-client";
 
-const baseURL = "http://lets-chat-server-service.default.svc.cluster.local:8080/api";
+const baseURL = "http://10.224.0.5:30080/api";
 
 const getUserToken = async () => {
   const user = auth.currentUser;
@@ -13,7 +13,7 @@ const getUserToken = async () => {
 export const initiateSocketConnection = async () => {
   const token = await getUserToken();
 
-  const socket = io("http://lets-chat-server-service.default.svc.cluster.local:8080", {
+  const socket = io("http://10.224.0.5:30080/api", {
     auth: {
       token,
     },
