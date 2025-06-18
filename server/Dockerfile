@@ -25,6 +25,7 @@ ENV AZURE_SQL_CONNECTION_STRING=$AZURE_SQL_CONNECTION_STRING
 
 RUN npm install
 RUN npm install firebase
+#copying service account
 COPY config/serviceAccountKey.json /app/config/serviceAccountKey.json
 COPY . .
 RUN npm prune --production
