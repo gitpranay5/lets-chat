@@ -14,13 +14,13 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: pranaydockerusr/lets-chat-frontend:15723954050
+        image: pranaydockerusr/lets-chat-frontend:1572050
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
         env:
         - name: REACT_APP_API_URL
-          value: "http://lets-chat-server-service:8080"
+          value: "http://10.224.0.5:30080"
 ---
 apiVersion: v1
 kind: Service
