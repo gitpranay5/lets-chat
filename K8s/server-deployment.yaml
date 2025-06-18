@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: server
-        image: pranaydockerusr/lets-chat-server:15730597191
+        image: pranaydockerusr/lets-chat-server:15731503705
         imagePullPolicy: IfNotPresent
         command: ["/bin/sh", "-c", "sleep infinity"]  
         env:
